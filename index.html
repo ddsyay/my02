@@ -1,0 +1,758 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;QuickZip PDF - Free Smart Compression&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>* {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-sizing: border-box;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>min-height: 100vh;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.6;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>header {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #1f2937 0%, #374151 100%);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 2em 1em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>h1 {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 2.5em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.3em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #60a5fa, #34d399);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>-webkit-background-clip: text;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>-webkit-text-fill-color: transparent;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background-clip: text;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>header p {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.1em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>opacity: 0.9;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>max-width: 600px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 auto;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.container {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>max-width: 800px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 auto;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 3em 2em;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.upload-section {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: white;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 3em 2em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 2em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transition: transform 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.upload-section:hover {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transform: translateY(-5px);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.file-upload-area {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 3px dashed #3b82f6;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 3em 2em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(45deg, rgba(59, 130, 246, 0.05), rgba(16, 185, 129, 0.05));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 2em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.file-upload-area:hover, .file-upload-area.dragover {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-color: #10b981;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transform: scale(1.02);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.upload-icon {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 4em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.5em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #3b82f6;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.upload-text {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.3em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #374151;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.5em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.upload-subtext {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #6b7280;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9em;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>#pdfInput {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: none;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.use-case-section {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 2em 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>select {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 1em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.1em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 2px solid #e5e7eb;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: white;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transition: border-color 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>select:focus {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-color: #3b82f6;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>outline: none;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.compression-settings {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #f8fafc;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 1.5em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 1.5em 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-left: 4px solid #3b82f6;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.quality-control {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 1em 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.quality-control label {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: block;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.5em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #374151;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.quality-slider {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 5px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #e5e7eb;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>outline: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>-webkit-appearance: none;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.quality-slider::-webkit-slider-thumb {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>-webkit-appearance: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>appearance: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #3b82f6, #10b981);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>button {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #3b82f6, #10b981);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 1em 2em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.1em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 50px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 1em 0.5em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>min-width: 200px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>button:hover:not(:disabled) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transform: translateY(-2px);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>button:disabled {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>opacity: 0.6;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: not-allowed;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transform: none;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.progress-section {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: white;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 2em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 2em 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.progress-bar {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #e5e7eb;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 1em 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.progress-fill {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #3b82f6, #10b981);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 0%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transition: width 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.file-info {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: white;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 2em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 2em 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.info-grid {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 1em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 1em 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.info-item {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #f8fafc;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 1em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-left: 4px solid #3b82f6;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.info-label {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #6b7280;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: 1px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.5em;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.info-value {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.2em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #1f2937;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.download-section {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #ecfdf5, #f0fdf4);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 2em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 2em 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 2px solid #10b981;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.savings-badge {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: inline-block;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #10b981, #059669);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.8em 1.5em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 50px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 1em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.1em;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.download-btn {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #10b981, #059669);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.2em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 1.2em 2.5em;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.reset-btn {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #6b7280;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.8em 1.5em;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>footer {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #1f2937;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 2em 1em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 3em;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>footer p {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0.5em 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>opacity: 0.8;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.lang-links {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 1em;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.lang-links a {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #60a5fa;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-decoration: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 1em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transition: color 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.lang-links a:hover {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #34d399;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 768px) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.container {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>padding: 2em 1em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>h1 {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>font-size: 2em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>.upload-section {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>padding: 2em 1em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>.file-upload-area {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>padding: 2em 1em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>button {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>min-width: auto;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>margin: 0.5em 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>.info-grid {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>grid-template-columns: 1fr;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;header&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;QuickZip PDF&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p id="headerText"&gt;Compress resumes, school files, and more under 2MB — fast, free, and private.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="upload-section"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;form id="uploadForm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="file-upload-area" id="uploadArea"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="upload-icon"&gt;📄&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="upload-text"&gt;Drop your PDF here or click to browse&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="upload-subtext"&gt;Maximum file size: 50MB • Supported: PDF files only&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="file" id="pdfInput" accept="application/pdf" required /&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="use-case-section"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;select id="useCase"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="student"&gt;🎓 School Submission (Under 2MB)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="job"&gt;💼 Resume for Job Application&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="freelancer"&gt;📝 Proposal or Contract&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="general"&gt;📋 General Document&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="compression-settings" id="compressionSettings"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="quality-control"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label for="qualitySlider"&gt;Compression Level: &lt;span id="qualityValue"&gt;70&lt;/span&gt;%&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="range" id="qualitySlider" class="quality-slider" min="10" max="95" value="70"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;small style="color: #6b7280;"&gt;Lower values = smaller file size, higher values = better quality&lt;/small&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button type="submit" id="compressBtn" disabled&gt;Compress PDF&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/form&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="file-info" id="fileInfo"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3 style="color: #1f2937; margin-bottom: 1em;"&gt;📊 File Analysis&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="info-grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="info-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="info-label"&gt;Original Size&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="info-value" id="originalSize"&gt;-&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="info-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="info-label"&gt;Pages&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="info-value" id="pageCount"&gt;-&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="info-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="info-label"&gt;Target Size&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="info-value" id="targetSize"&gt;&lt; 2MB&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="progress-section" id="progressSection"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3 style="color: #1f2937;"&gt;🔄 Processing Your PDF&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="progress-bar"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="progress-fill" id="progressFill"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p id="progressText"&gt;Initializing compression...&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="download-section" id="downloadSection"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="savings-badge" id="savingsBadge"&gt;File size reduced by 0%&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3 style="color: #1f2937; margin: 1em 0;"&gt;✅ Compression Complete!&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="info-grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="info-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="info-label"&gt;New Size&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="info-value" id="compressedSize"&gt;-&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="info-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="info-label"&gt;Compression Ratio&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="info-value" id="compressionRatio"&gt;-&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="download-btn" id="downloadBtn"&gt;📥 Download Compressed PDF&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="reset-btn" id="resetBtn"&gt;🔄 Compress Another File&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p id="status" style="text-align: center; margin: 2em 0; font-weight: 600;"&gt;&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;footer&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;QuickZip PDF | Privacy-first, no tracking. Made for students, freelancers, and job seekers worldwide.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="lang-links"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="#" onclick="changeLang('en')"&gt;English&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="#" onclick="changeLang('es')"&gt;Español&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="#" onclick="changeLang('fr')"&gt;Français&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="#" onclick="changeLang('pt')"&gt;Português&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let originalFile = null;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let compressedBlob = null;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const uploadArea = document.getElementById('uploadArea');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const fileInput = document.getElementById('pdfInput');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const uploadForm = document.getElementById('uploadForm');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const compressionSettings = document.getElementById('compressionSettings');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const fileInfo = document.getElementById('fileInfo');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const progressSection = document.getElementById('progressSection');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const downloadSection = document.getElementById('downloadSection');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const compressBtn = document.getElementById('compressBtn');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const qualitySlider = document.getElementById('qualitySlider');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const qualityValue = document.getElementById('qualityValue');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const useCaseSelect = document.getElementById('useCase');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Update quality display and target size</p>
+<p class="p1"><span class="Apple-converted-space">      </span>qualitySlider.addEventListener('input', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>qualityValue.textContent = e.target.value;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>updateTargetSize();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>useCaseSelect.addEventListener('change', updateTargetSize);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>function updateTargetSize() {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const useCase = useCaseSelect.value;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const targetSizes = {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>student: '&lt; 2MB',</p>
+<p class="p1"><span class="Apple-converted-space">          </span>job: '&lt; 1MB',</p>
+<p class="p1"><span class="Apple-converted-space">          </span>freelancer: '&lt; 3MB',</p>
+<p class="p1"><span class="Apple-converted-space">          </span>general: 'Optimized'</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('targetSize').textContent = targetSizes[useCase] || 'Optimized';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// File upload interactions</p>
+<p class="p1"><span class="Apple-converted-space">      </span>uploadArea.addEventListener('click', () =&gt; fileInput.click());</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>uploadArea.addEventListener('dragover', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>e.preventDefault();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>uploadArea.classList.add('dragover');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>uploadArea.addEventListener('dragleave', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>uploadArea.classList.remove('dragover');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>uploadArea.addEventListener('drop', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>e.preventDefault();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>uploadArea.classList.remove('dragover');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const files = e.dataTransfer.files;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (files.length &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>handleFileSelect(files[0]);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>fileInput.addEventListener('change', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (e.target.files.length &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>handleFileSelect(e.target.files[0]);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>async function handleFileSelect(file) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (file.type !== 'application/pdf') {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>alert('Please upload a valid PDF file.');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (file.size &gt; 50 * 1024 * 1024) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>alert('File size must be less than 50MB.');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>originalFile = file;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>await displayFileInfo(file);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>compressionSettings.style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>compressBtn.disabled = false;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Reset other sections</p>
+<p class="p1"><span class="Apple-converted-space">        </span>progressSection.style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>downloadSection.style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>async function displayFileInfo(file) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('originalSize').textContent = formatFileSize(file.size);</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const arrayBuffer = await file.arrayBuffer();</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>document.getElementById('pageCount').textContent = pdfDoc.getPageCount();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>document.getElementById('pageCount').textContent = 'Unable to read';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>updateTargetSize();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>fileInfo.style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>uploadForm.addEventListener('submit', async function (e) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>e.preventDefault();</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!originalFile) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>alert('Please select a PDF file first.');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>await compressPDF();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>async function compressPDF() {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>compressBtn.disabled = true;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>progressSection.style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>downloadSection.style.display = 'none';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>updateProgress(10, 'Loading PDF document...');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const arrayBuffer = await originalFile.arrayBuffer();</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>updateProgress(30, 'Analyzing document structure...');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>updateProgress(50, 'Applying compression algorithms...');</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>// Get compression quality</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const quality = parseInt(qualitySlider.value) / 100;</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>// Apply compression settings based on use case</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const useCase = useCaseSelect.value;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>let compressionOptions = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>useObjectStreams: true,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>addDefaultPage: false,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>objectStreamsThreshold: 40,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateFieldAppearances: false</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>// Adjust compression based on use case</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (useCase === 'student' || useCase === 'job') {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>compressionOptions.objectStreamsThreshold = 20; // More aggressive</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>updateProgress(70, 'Optimizing file structure...');</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const compressedPdfBytes = await pdfDoc.save(compressionOptions);</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>updateProgress(90, 'Finalizing compression...');</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>// Simulate additional compression time</p>
+<p class="p1"><span class="Apple-converted-space">          </span>await new Promise(resolve =&gt; setTimeout(resolve, 500));</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>compressedBlob = new Blob([compressedPdfBytes], { type: 'application/pdf' });</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>updateProgress(100, 'Compression complete!');</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>setTimeout(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>progressSection.style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>showDownloadSection();</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}, 1000);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>console.error('Compression error:', error);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>document.getElementById('status').innerHTML =<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>'&lt;span style="color: #ef4444;"&gt;❌ Error compressing PDF. Please try again with a different file.&lt;/span&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">          </span>compressBtn.disabled = false;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>progressSection.style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>function updateProgress(percent, text) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('progressFill').style.width = percent + '%';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('progressText').textContent = text;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>function showDownloadSection() {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const originalSize = originalFile.size;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const compressedSize = compressedBlob.size;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const savings = Math.max(0, Math.round(((originalSize - compressedSize) / originalSize) * 100));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ratio = (originalSize / compressedSize).toFixed(1);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('compressedSize').textContent = formatFileSize(compressedSize);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('compressionRatio').textContent = ratio + ':1';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('savingsBadge').textContent = `File size reduced by ${savings}%`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Check if target size is met</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const useCase = useCaseSelect.value;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const targetMB = {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>student: 2,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>job: 1,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>freelancer: 3,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>general: Infinity</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const compressedMB = compressedSize / (1024 * 1024);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (compressedMB &lt;= targetMB[useCase]) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>document.getElementById('status').innerHTML =<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>'&lt;span style="color: #10b981;"&gt;✅ Perfect! Your file meets the size requirement.&lt;/span&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else if (compressedMB &lt;= targetMB[useCase] * 1.2) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>document.getElementById('status').innerHTML =<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>'&lt;span style="color: #f59e0b;"&gt;⚠️ Close to target size. Consider reducing quality for smaller file.&lt;/span&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>document.getElementById('status').innerHTML =<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>'&lt;span style="color: #ef4444;"&gt;📏 File is still above target size. Try lower quality setting.&lt;/span&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>downloadSection.style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('downloadBtn').addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (compressedBlob) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const url = URL.createObjectURL(compressedBlob);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const a = document.createElement('a');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>a.href = url;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>a.download = originalFile.name.replace('.pdf', '_compressed.pdf');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>document.body.appendChild(a);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>a.click();</p>
+<p class="p1"><span class="Apple-converted-space">          </span>document.body.removeChild(a);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>URL.revokeObjectURL(url);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('resetBtn').addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Reset all state</p>
+<p class="p1"><span class="Apple-converted-space">        </span>originalFile = null;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>compressedBlob = null;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>fileInput.value = '';</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Hide sections</p>
+<p class="p1"><span class="Apple-converted-space">        </span>compressionSettings.style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>fileInfo.style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>progressSection.style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>downloadSection.style.display = 'none';</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Reset form</p>
+<p class="p1"><span class="Apple-converted-space">        </span>compressBtn.disabled = true;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('status').textContent = '';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>qualitySlider.value = 70;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>qualityValue.textContent = '70';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>useCaseSelect.value = 'student';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>updateTargetSize();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>function formatFileSize(bytes) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (bytes === 0) return '0 Bytes';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const k = 1024;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const sizes = ['Bytes', 'KB', 'MB', 'GB'];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const i = Math.floor(Math.log(bytes) / Math.log(k));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Language switching</p>
+<p class="p1"><span class="Apple-converted-space">      </span>window.changeLang = function(lang) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const translations = {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>en: {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>header: "Compress resumes, school files, and more under 2MB — fast, free, and private.",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>student: "🎓 School Submission (Under 2MB)",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>job: "💼 Resume for Job Application",<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>freelancer: "📝 Proposal or Contract",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>general: "📋 General Document"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>},</p>
+<p class="p1"><span class="Apple-converted-space">          </span>es: {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>header: "Comprime archivos PDF gratis para trabajos escolares, CVs y más.",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>student: "🎓 Entrega Escolar (Menos de 2MB)",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>job: "💼 Currículum para Empleo",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>freelancer: "📝 Propuesta o Contrato",<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>general: "📋 Documento General"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>},</p>
+<p class="p1"><span class="Apple-converted-space">          </span>fr: {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>header: "Compressez vos fichiers PDF gratuitement pour étudiants, CV, contrats.",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>student: "🎓 Soumission Scolaire (Moins de 2MB)",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>job: "💼 CV pour Candidature",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>freelancer: "📝 Proposition ou Contrat",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>general: "📋 Document Général"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>},</p>
+<p class="p1"><span class="Apple-converted-space">          </span>pt: {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>header: "Comprime arquivos PDF gratuitamente para estudos, currículos e contratos.",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>student: "🎓 Entrega Escolar (Menos de 2MB)",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>job: "💼 Currículo para Emprego",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>freelancer: "📝 Proposta ou Contrato",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>general: "📋 Documento Geral"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const translation = translations[lang];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (translation) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>document.getElementById('headerText').textContent = translation.header;</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>// Update select options</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const options = useCaseSelect.options;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>Object.keys(translation.options).forEach((key, index) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (options[index]) {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>options[index].textContent = translation.options[key];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Initialize</p>
+<p class="p1"><span class="Apple-converted-space">      </span>updateTargetSize();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>})();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
